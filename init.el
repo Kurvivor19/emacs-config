@@ -1,0 +1,30 @@
+;; Author: Ivan Viktorovich Truskov
+;; emacs initialisation script
+;; based on emacs-starter-kit ny technomancy
+
+;; "Emacs outshines all other editing software in approximately the
+;; same way that the noonday sun does the stars. It is not just bigger
+;; and brighter; it simply makes everything else vanish."
+;; -Neal Stephenson, "In the Beginning was the Command Line"
+
+;; Load path etc.
+
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+
+;; Load path etc
+
+(add-to-list 'load-path dotfiles-dir)
+(add-to-list 'load-path (concat dotfiles-dir "/config"))
+
+(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
+(setq custom-file (concat dotfiles-dir "custom.el"))
+(setq package-user-dir (concat dotfiles-dir "elpa"))
+
+(require 'packages-init)
+(require 'packages-preload)
+(require 'display-config)
+(require 'technomancy-defaults)
+
+
+
