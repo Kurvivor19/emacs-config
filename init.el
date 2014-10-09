@@ -25,7 +25,7 @@
 (require 'packages-preload)
 (require 'display-config)
 (require 'technomancy-defaults)
-
+(require 'emacs-for-python-init)
 
 ;; System-specific config loading from ESK
 (setq system-specific-config (concat dotfiles-dir system-name ".el"))
