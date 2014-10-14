@@ -6,7 +6,11 @@
 (require 'epy-setup)
 (require 'epy-python)
 (require 'epy-completion)
-
+;; sceleton-pair annoys me
+;; so, i will use electrics
+(setq skeleton-pair nil)
+(require 'autopair)
+(autopair-global-mode)
 
 (require 'smart-operator)
 
@@ -164,7 +168,7 @@ original" (interactive)
 ;; Other useful stuff
 
 ; delete seleted text when typing
-(delete-selection-mode 1)
+(delete-selection-mode)
 
 ;; highlight current line
 ;;(global-hl-line-mode 1)
@@ -174,5 +178,9 @@ original" (interactive)
 (show-paren-mode t)
 
 (require 'epy-bindings)
+
+;; ensure ahg is loaded
+(eval-after-load "vc-hg"
+  '(require 'ahg))
 
 (provide 'emacs-for-python-init)
