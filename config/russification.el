@@ -10,7 +10,7 @@
 (set-terminal-coding-system 'cp1251)
 (set-keyboard-coding-system 'cp1251)
 (setq-default coding-system-for-read 'cp1251)
-(setq-default coding-system-for-write 'cp1251)
+(setq-default coding-system-for-write nil)
 (setq selection-coding-system 'cp1251)
 
 (provide 'russification)
