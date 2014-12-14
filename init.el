@@ -25,7 +25,7 @@
 (require 'packages-preload)
 (require 'display-config)
 (require 'technomancy-defaults)
-(require 'emacs-for-python-init)
+;(require 'emacs-for-python-init)
 
 ;; System-specific config loading from ESK
 (setq system-specific-config (concat dotfiles-dir system-name ".el"))
@@ -33,5 +33,6 @@
 
 (package-initialize)
 
+(elpy-enable)
 ;; Open list of recent files as initial buffer
 (recentf-open-files)

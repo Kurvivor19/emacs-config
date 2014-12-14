@@ -1,10 +1,10 @@
 ;; import emacs-for-python with some exceptions
 
 ;; add load path
-(add-to-list 'load-path (concat dotfiles-dir "/other" "/emacs-for-python"))
+;(add-to-list 'load-path (concat dotfiles-dir "/other" "/emacs-for-python"))
 
-(require 'epy-setup)
-(require 'epy-python)
+;(require 'epy-setup)
+;(require 'epy-python)
 (require 'epy-completion)
 ;; sceleton-pair annoys me
 ;; so, i will use electrics
@@ -177,7 +177,7 @@ original" (interactive)
 ; highlight brackets
 (show-paren-mode t)
 
-(require 'epy-bindings)
+; (require 'epy-bindings)
 
 ;; ensure ahg is loaded
 (eval-after-load "vc-hg"
