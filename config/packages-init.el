@@ -22,6 +22,7 @@
 			    'ahg
 			    'autopair
                             'buffer-move
+                            'elpy
 			    )
   "Libraries that should be installed by default.")
 
