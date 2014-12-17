@@ -27,12 +27,16 @@
 (require 'technomancy-defaults)
 ;(require 'emacs-for-python-init)
 
+
+(require 'russification)
+
+
 ;; System-specific config loading from ESK
 (setq system-specific-config (concat dotfiles-dir system-name ".el"))
 (if (file-exists-p system-specific-config) (load system-specific-config))
 
 (package-initialize)
-
 (elpy-enable)
+
 ;; Open list of recent files as initial buffer
 (recentf-open-files)

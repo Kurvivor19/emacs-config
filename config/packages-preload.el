@@ -30,8 +30,17 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
-;; enabel quick yes
+;; enable quick yes
 (require 'quick-yes)
 
-(provide 'packages-preload)
+;; sceleton-pair annoys me
+;; so, i will use electrics
+(setq skeleton-pair nil)
+(require 'autopair)
+(autopair-global-mode)
 
+;; ensure ahg is loaded
+(eval-after-load "vc-hg"
+  '(require 'ahg))
+
+(provide 'packages-preload)
