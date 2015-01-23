@@ -14,7 +14,8 @@
 
 ;; Load path etc
 
-(add-to-list 'load-path dotfiles-dir)
+;; next line commented to avoidwarning messages on startup
+;(add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/config"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
