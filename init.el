@@ -29,7 +29,7 @@
 ;(require 'emacs-for-python-init)
 
 
-(require 'russification)
+;(require 'russification)
 
 
 ;; System-specific config loading from ESK
@@ -39,5 +39,7 @@
 (package-initialize)
 (elpy-enable)
 
+;; use customizations
+(load custom-file)
 ;; Open list of recent files as initial buffer
 (recentf-open-files)

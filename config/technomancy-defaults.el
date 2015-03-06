@@ -34,6 +34,7 @@
 ;;; Code:
 ;;;###autoload
 (progn
+  (setq ido-everywhere t)
   (ido-mode t)
   (setq ido-enable-flex-matching t)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -54,6 +55,21 @@
 	ediff-window-setup-function 'ediff-setup-windows-plain
 	save-place-file (concat user-emacs-directory "places")
 	backup-directory-alist `(("." . ,(concat user-emacs-directory
-						 "backups")))))
+						 "backups"))))
+  (defun select-current-line ()
+    "Select the current line"
+    (interactive)
+    (end-of-line) ; move to end of line
+    (set-mark (line-beginning-position)))
+  (global-set-key (kbd "C-S-l") 'select-current-line)
+  
+  (add-hook 'python-mode-hook
+	  (lambda ()
+	    (define-key python-mode-map [remap imenu]
+	      'idomenu)
+            )
+          )
+)
+
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here
