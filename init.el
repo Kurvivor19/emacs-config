@@ -36,5 +36,6 @@
 (package-initialize)
 (elpy-enable)
 
+(server-start)
 ;; Open list of recent files as initial buffer
 (recentf-open-files)
