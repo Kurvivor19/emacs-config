@@ -3,6 +3,7 @@
 ;; git paths
 (setenv "PATH" (concat (getenv "PATH") ";c:\\Program Files (x86)\\Git\\bin"))
 (setenv "PLINK_PROTOCOL" "ssh")
+(setenv "GIT_ASKPASS" "git-gui--askpass")
 
 (setq exec-path (append exec-path '("c:/Program Files (x86)/Git/bin")))
 

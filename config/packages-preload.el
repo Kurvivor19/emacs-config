@@ -43,6 +43,8 @@
 (eval-after-load "vc-hg"
   '(require 'ahg))
 
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 ;; change gnus configuration file location to keep it inside repository dir
 (setq gnus-init-file (concat dotfiles-dir ".gnus.el"))
 
