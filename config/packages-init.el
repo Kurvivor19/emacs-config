@@ -33,7 +33,10 @@
     (unless (or (member package package-activated-list)
                 (functionp package))
       (message "Installing %s" (symbol-name package))
-      (package-install package))))
+      (let ((debug-on-init nil))
+	(with-demoted-errors (package-install package))
+	)
+)))
 
 (defun check-if-online? ()
   "See if we're online.

@@ -41,5 +41,6 @@
 ;; set up org mode usage
 (require 'org-local)
 
+(server-start)
 ;; Open list of recent files as initial buffer
 (recentf-open-files)

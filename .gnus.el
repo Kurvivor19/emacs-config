@@ -11,5 +11,10 @@
                                               (nnimap-server-port 993)
                                               (nnimap-expunge t)
                                               (nnimap-stream ssl))
+                                      (nnimap "mail.ru"
+                                              (nnimap-address "imap.mail.ru")
+                                              (nnimap-server-port 993)
+                                              (nnimap-expunge t)
+                                              (nnimap-stream ssl))
                                       ))
 
