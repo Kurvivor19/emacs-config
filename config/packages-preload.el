@@ -46,4 +46,11 @@
 ;; change gnus configuration file location to keep it inside repository dir
 (setq gnus-init-file (concat dotfiles-dir ".gnus.el"))
 
+;; allow company-jedi
+(require 'company)
+(require 'company-jedi)
+(add-to-list 'company-backends 'company-jedi)
+
+(require 'idomenu)
+
 (provide 'packages-preload)

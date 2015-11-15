@@ -15,7 +15,7 @@
 ;; Load path etc
 
 ;; next line commented to avoidwarning messages on startup
-;(add-to-list 'load-path dotfiles-dir)
+(add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/config"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
@@ -26,20 +26,20 @@
 (require 'packages-preload)
 (require 'display-config)
 (require 'technomancy-defaults)
-;(require 'emacs-for-python-init)
 
-
-;(require 'russification)
-
-
-;; System-specific config loading from ESK
-(setq system-specific-config (concat dotfiles-dir system-name ".el"))
-(if (file-exists-p system-specific-config) (load system-specific-config))
-
+ 
 (package-initialize)
 (elpy-enable)
 
 ;; use customizations
 (load custom-file)
+
+;; System-specific config loading from ESK
+(setq system-specific-config (concat dotfiles-dir system-name ".el"))
+(if (file-exists-p system-specific-config) (load system-specific-config))
+
+;; set up org mode usage
+(require 'org-local)
+
 ;; Open list of recent files as initial buffer
 (recentf-open-files)
