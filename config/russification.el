@@ -1,5 +1,7 @@
 ;; Устанавливаем языковую среду
-(set-language-environment 'Cyrillic-ALT)
+(set-language-environment 'Cyrillic-KOI8)
+
+(set-input-method 'russian-computer)
 
 (define-coding-system-alias 'windows-1251 'cp1251)
 (define-coding-system-alias 'win-1251 'cp1251)

@@ -23,6 +23,8 @@
 			    'autopair
                             'buffer-move
                             'elpy
+			    'company
+			    'company-jedi
 			    )
   "Libraries that should be installed by default.")
 

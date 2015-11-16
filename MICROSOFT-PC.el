@@ -14,3 +14,5 @@
 ;; Octave paths
 (setenv "PATH" (concat (getenv "PATH") ";c:\\octave-4.0.0\\bin"))
 (setq exec-path (append exec-path '("c:/octave-4.0.0/bin")))
+
+(require 'russification)
