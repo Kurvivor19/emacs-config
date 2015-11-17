@@ -22,9 +22,21 @@
 ;; org-directory is supposed to be customized
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
+;; capture templates
+(setq org-capture-templates
+ '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+        "* TODO %?\n  %t\n  %a\n")
+   ("n" "Note" entry (file+headline org-default-notes-file "Notes")
+        "* %? :NOTE:\n  At %u from %a\n")
+   ("r" "Kill-ring note" entry (file+headline org-default-notes-file "Notes")
+        "* %?%c :NOTE:\n  %u (from %a)\n")
+   ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
+        "* %?%x :NOTE:\n  %u\n")
+   )
+)
+
 ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((org-agenda-files . (:maxlevel . 3)))))
-
 
 ; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
