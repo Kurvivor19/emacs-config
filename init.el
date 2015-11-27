@@ -12,10 +12,8 @@
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
-;; Load path etc
-
 ;; next line commented to avoidwarning messages on startup
-(add-to-list 'load-path dotfiles-dir)
+; (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path (concat dotfiles-dir "/config"))
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
