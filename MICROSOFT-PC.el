@@ -16,3 +16,6 @@
 (setq exec-path (append exec-path '("c:/octave-4.0.0/bin")))
 
 (require 'russification)
+
+;; for info-mode
+(add-hook 'Info-mode-hook (lambda () (setq coding-system-for-read 'utf-8)))
