@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\irc]
+@="URL:Alert Protocol"
+URL Protocol=""
+[HKEY_CLASSES_ROOT\irc\DefaultIcon]
+@="c:\\mingw_mine\\bin\\runemacs.exe,1"
+[HKEY_CLASSES_ROOT\irc\shell\open\command]
+@="c:\\mingw_mine\\bin\\emacsclientw.exe" "%1"

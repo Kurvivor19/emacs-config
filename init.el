@@ -24,8 +24,8 @@
 (require 'packages-preload)
 (require 'display-config)
 (require 'technomancy-defaults)
+(require 'irc-opener)
 
- 
 (package-initialize)
 (elpy-enable)
 
