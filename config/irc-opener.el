@@ -3,7 +3,8 @@
 (require 'erc)
 
 (defun krv/validate-irc-url (url-string)
-  "Validate given string as an IRC URL.\n
+  "Validate given string as an IRC URL.
+
  Return parsed version of the string or nil"
   (let ((url-struct (url-generic-parse-url (url-unhex-string url-string t)))
         (bad-character-list (list
@@ -25,23 +26,28 @@
 
 (defun krv/make-channel-opener (irc-channel-name)
   "Return function that will open a channel
+
  Function is a hook that removes itself from erc-after-connect
  after own execution.
+
  NOTE: first hook from erc-after-connect is actually removed, so
  this hook must not be appended"
   ;; possible alternate function (erc-join-channel irc-url-name-part)
   `(lambda (server nick)
-     ;; (print "Hook function was run!")
+     ;; (message "Hook function was run!")
      (erc-server-send (concat "join " ,irc-channel-name))
      (remove-hook 'erc-after-connect (car erc-after-connect))))
 
 (defun krv/open-irc-url (url-string)
   "Open IRC channel that is described by a given URL.
+
  As per specification [1], if the first symbol isn't encoded
  representation of '#', '!' or '&', default value of '#' is
  substituted.
+
  On successful IRC URL validation, erc is opened for speci-
  fied channel of the specified server.
+
  [1]: http://www.w3.org/Addressing/draft-mirashi-url-irc-01"
   (let ((parsed-url-struct (krv/validate-irc-url url-string)))
     (if parsed-url-struct
@@ -56,14 +62,31 @@
             (unless (member (aref irc-url-name-part 0)
                             '(?# ?& ?+))
               (setq irc-url-name-part (concat "#" irc-url-name-part)))
-            (print (format "URL is for irc channel %s on server %s"
+            (message (format "URL is for irc channel %s on server %s"
                            irc-url-name-part irc-url-host-part))
                                         ; open erc channel!
             (add-hook 'erc-after-connect (krv/make-channel-opener irc-url-name-part))
             (erc :server irc-url-host-part :port irc-url-port-part))
            ((equal irc-url-keyword-part "isnick")
-            (print "URL is for irc nickname. These urls are not supported"))
-           (t (print "Unable to determine type of IRC URL"))))
-      (print "not validated"))))
+            (message "URL is for irc nickname. These urls are not supported"))
+           (t (message "Unable to determine type of IRC URL"))))
+      (message "irc url not validated"))))
+
+(defun krv/irc-url-server-open (original-function &rest args)
+  "Intercept calls to server-visit-files"
+  (message "Advice on server-visit-files executed")
+  (let* ((files (caar args))
+         (flag (catch 'irc-protocol
+                (dolist (file files)
+                  (if (krv/validate-irc-url file)
+                      (throw 'irc-protocol file))))))
+    (if flag
+        (prog
+         (message "Attempting to open irc channel")
+         (krv/open-irc-url flag))
+      (message "Executing default server-visit-files")
+      (apply original-function args))))
+
+(advice-add 'server-visit-files :around #'krv/irc-url-server-open)
 
 (provide 'irc-opener)
