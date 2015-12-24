@@ -5,24 +5,35 @@
 (defun krv/validate-irc-url (url-string)
   "Validate given string as an IRC URL.
 
- Return parsed version of the string or nil"
-  (let ((url-struct (url-generic-parse-url (url-unhex-string url-string t)))
-        (bad-character-list (list
-                             ?\x20	; SPACE
-                             ?\x7	; BELL
-                             ?\x0	; NUL
-                             ?\xD	; CR
-                             ?\xA	; LF
-                             )))
-    (when (equal "irc" (url-type url-struct))
-      (and
-       (> (length (url-host url-struct)) 0)
-       ;; url-filename part begins with '/'
-       (> (length (url-filename url-struct)) 1)
-       (cl-every (lambda (char) (not (member char bad-character-list)))
-                 (url-filename url-struct))
-       ;; parsed url structure is returned
-       url-struct))))
+ Return parsed version of the string or nil.
+ 'Damaged' URLs, for example c:/emacs/bin/irc:/server/channel
+ are fixed and then validated"
+  
+  (if (string-match
+       "\\(?:^\\|[^a-zA-Z]\\)\\(irc:/.*\\)" url-string)
+      ;; aligned-url-string is guaranteed to start with "irc:/"
+      (let ((aligned-url-string (match-string 1 url-string)))
+        (unless (equal ?/ (aref aligned-url-string 5))
+          ;; irc:/[^/] -> irc://
+          (setq aligned-url-string (concat "irc://" (substring aligned-url-string 5))))
+        
+        (let ((url-struct (url-generic-parse-url (url-unhex-string aligned-url-string t)))
+              (bad-character-list (list
+                                   ?\x20	; SPACE
+                                   ?\x7		; BELL
+                                   ?\x0		; NUL
+                                   ?\xD		; CR
+                                   ?\xA		; LF
+                                   )))
+          (when (equal "irc" (url-type url-struct))
+            (and
+             (> (length (url-host url-struct)) 0)
+             ;; url-filename part begins with '/'
+             (> (length (url-filename url-struct)) 1)
+             (cl-every (lambda (char) (not (member char bad-character-list)))
+                       (url-filename url-struct))
+             ;; parsed url structure is returned
+             url-struct))))))
 
 (defun krv/make-channel-opener (irc-channel-name)
   "Return function that will open a channel
@@ -43,7 +54,7 @@
 
  As per specification [1], if the first symbol isn't encoded
  representation of '#', '!' or '&', default value of '#' is
- substituted.
+gs substituted.
 
  On successful IRC URL validation, erc is opened for speci-
  fied channel of the specified server.
@@ -81,7 +92,7 @@
                   (if (krv/validate-irc-url file)
                       (throw 'irc-protocol file))))))
     (if flag
-        (prog
+        (progn
          (message "Attempting to open irc channel")
          (krv/open-irc-url flag))
       (message "Executing default server-visit-files")
