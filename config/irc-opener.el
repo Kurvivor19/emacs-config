@@ -54,7 +54,7 @@
 
  As per specification [1], if the first symbol isn't encoded
  representation of '#', '!' or '&', default value of '#' is
-gs substituted.
+ substituted.
 
  On successful IRC URL validation, erc is opened for speci-
  fied channel of the specified server.
