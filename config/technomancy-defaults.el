@@ -38,11 +38,22 @@
   (ido-mode t)
   (setq ido-enable-flex-matching t)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
-  (global-set-key (kbd "M-z") 'zap-up-to-char)
+  ; (global-set-key (kbd "M-z") 'zap-up-to-char)
   (global-set-key (kbd "C-s") 'isearch-forward-regexp)
   (global-set-key (kbd "C-r") 'isearch-backward-regexp)
   (global-set-key (kbd "C-M-s") 'isearch-forward)
   (global-set-key (kbd "C-M-r") 'isearch-backward)
+
+  ;; Personal short keybindings
+  (define-prefix-command 'user-map-f5)
+  (global-set-key (kbd "<f5>") 'user-map-f5)
+  ;; This causes ERC to connect to the Freenode network upon hitting
+  ;; <f5> e
+  (define-key user-map-f5 (kbd "e") (lambda () (interactive)
+                           (erc :server "irc.freenode.net"
+                                :nick "Kurvivor" :password "exodus")))
+  ;; g for git
+  (define-key user-map-f5 (kbd "g") 'magit-status)
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t
