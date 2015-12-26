@@ -32,6 +32,8 @@
         "* %?%c :NOTE:\n  %u (from %a)\n")
    ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
         "* %?%x :NOTE:\n  %u\n")
+   ("c" "Calendar entry" plain (file+datetree+prompt (concat org-directory "/calendar.org"))
+        "\t%?" :empty-lines 1)
    )
 )
 
