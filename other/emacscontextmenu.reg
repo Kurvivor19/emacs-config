@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell]
+[HKEY_CLASSES_ROOT\*\shell\openwemacs]
+@="&Edit with Emacs"
+[HKEY_CLASSES_ROOT\*\shell\openwemacs\command]
+@="c:\\mingw_mine\\bin\\emacsclientw.exe --alternate-editor=\"c:\\mingw_mine\\bin\\runemacs.exe\" -n \"%1\""
+"Icon"="c:\\emacs\\emacs-24.5\\source\\msdos\\emacs.ico"
+[HKEY_CLASSES_ROOT\Directory\shell\openwemacs]
+@="Edit &with Emacs"
+[HKEY_CLASSES_ROOT\Directory\shell\openwemacs\command]
+@="c:\\mingw_mine\\bin\\emacsclientw.exe --alternate-editor=\"c:\\mingw_mine\\bin\\runemacs.exe\" -n \"%1\""
+"Icon"="c:\\emacs\\emacs-24.5\\source\\msdos\\emacs.ico"
