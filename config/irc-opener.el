@@ -16,7 +16,7 @@
         (unless (equal ?/ (aref aligned-url-string 5))
           ;; irc:/[^/] -> irc://
           (setq aligned-url-string (concat "irc://" (substring aligned-url-string 5))))
-        
+        (print aligned-url-string)
         (let ((url-struct (url-generic-parse-url (url-unhex-string aligned-url-string t)))
               (bad-character-list (list
                                    ?\x20	; SPACE
@@ -26,14 +26,16 @@
                                    ?\xA		; LF
                                    )))
           (when (equal "irc" (url-type url-struct))
-            (and
-             (> (length (url-host url-struct)) 0)
-             ;; url-filename part begins with '/'
-             (> (length (url-filename url-struct)) 1)
-             (cl-every (lambda (char) (not (member char bad-character-list)))
-                       (url-filename url-struct))
+            (let ((channel-name (or (url-target url-struct) (url-filename url-struct))))
+              (and
+               (> (length (url-host url-struct)) 0)
+               channel-name
+               ;; url-filename part begins with '/'
+               (> (length channel-name) 0)
+               (cl-every (lambda (char) (not (member char bad-character-list)))
+                       channel-name)
              ;; parsed url structure is returned
-             url-struct))))))
+               url-struct)))))))
 
 (defun krv/make-channel-opener (irc-channel-name)
   "Return function that will open a channel
@@ -62,9 +64,12 @@
  [1]: http://www.w3.org/Addressing/draft-mirashi-url-irc-01"
   (let ((parsed-url-struct (krv/validate-irc-url url-string)))
     (if parsed-url-struct
-        (let* ((filename-string-parts (split-string (url-filename parsed-url-struct) "," t))
-               (irc-url-name-part (substring (car filename-string-parts) 1 nil))
-               (irc-url-keyword-part (cadr filename-string-parts))
+        (let* ((channel-name (or (url-target parsed-url-struct) (url-filename parsed-url-struct)))
+               (channel-name-parts (split-string channel-name "," t))
+               (irc-url-name-part (if (equal (aref (car channel-name-parts)) ?/)
+                                      (substring (car channel-name-parts) 1 nil)
+                                    (car channel-name-parts)))
+               (irc-url-keyword-part (cadr channel-name-parts))
                (irc-url-host-part (url-host parsed-url-struct))
                (irc-url-port-part (url-port parsed-url-struct)))
           (cond 
