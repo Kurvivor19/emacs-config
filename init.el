@@ -23,12 +23,15 @@
 (require 'packages-init)
 (require 'packages-preload)
 (require 'display-config)
+(require 'helm-config)
+(require 'helm-projectile)
 (require 'technomancy-defaults)
 (require 'irc-opener)
 
+
 (package-initialize)
 (elpy-enable)
-
+(helm-projectile-on)
 ;; use customizations
 (load custom-file)
 

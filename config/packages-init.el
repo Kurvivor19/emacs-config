@@ -25,6 +25,8 @@
                             'elpy
 			    'company
 			    'company-jedi
+                            'helm-projectile
+                            'org-journal
 			    )
   "Libraries that should be installed by default.")
 

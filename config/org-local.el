@@ -31,25 +31,29 @@
    ("r" "Kill-ring note" entry (file+headline org-default-notes-file "Notes")
         "* %?%c :NOTE:\n  %u (from %a)\n")
    ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
-        "* %?%x :NOTE:\n  %u\n")
-   ("c" "Calendar entry" plain (file+datetree+prompt (concat org-directory "/calendar.org"))
-        "\t%?" :empty-lines 1)
-   )
-)
+        "* %?%x :NOTE:\n  %u\n")))
 
-; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((org-agenda-files . (:maxlevel . 3)))))
 
-; Use full outline paths for refile targets - we file directly with IDO
+;; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
 
-; Targets complete directly with IDO
+;; Targets complete directly with IDO
 (setq org-outline-path-complete-in-steps nil)
 
-; Allow refile to create parent tasks with confirmation
+;; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
-; Use IDO for both buffer and file completion and ido-everywhere to t
+;; Use IDO for both buffer and file completion and ido-everywhere to t
 (setq org-completion-use-ido t)
+
+;; set agenda view to restore windows on exit
+(setq org-agenda-restore-windows-after-quit t)
+(setq org-agenda-window-setup 'current-window)
+
+;; setup org-journal
+(setq org-journal-dir (concat org-directory "/journal/"))
+(require 'org-journal)
 
 (provide 'org-local)

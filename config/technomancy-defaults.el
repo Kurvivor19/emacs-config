@@ -37,12 +37,24 @@
   (setq ido-everywhere t)
   (ido-mode t)
   (setq ido-enable-flex-matching t)
+
+  (global-set-key (kbd "C-x M-b") 'helm-buffers-list)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   ; (global-set-key (kbd "M-z") 'zap-up-to-char)
   (global-set-key (kbd "C-s") 'isearch-forward-regexp)
   (global-set-key (kbd "C-r") 'isearch-backward-regexp)
   (global-set-key (kbd "C-M-s") 'isearch-forward)
   (global-set-key (kbd "C-M-r") 'isearch-backward)
+  (global-set-key (kbd "M-s o") 'helm-occur)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-x C-S-r") 'helm-recentf)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-c j") 'helm-imenu)
+
+  (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
 
   ;; Personal short keybindings
   (define-prefix-command 'user-map-f5)
@@ -54,6 +66,10 @@
                                 :nick "Kurvivor" :password "exodus")))
   ;; g for git
   (define-key user-map-f5 (kbd "g") 'magit-status)
+  ;; m for mercurial
+  (define-key user-map-f5 (kbd "m") 'ahg-status)
+  ;; p for projectile
+  (define-key user-map-f5 (kbd "p") 'helm-projectile)
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t
