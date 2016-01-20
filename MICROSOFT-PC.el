@@ -19,3 +19,7 @@
 
 ;; for info-mode
 (add-hook 'Info-mode-hook (lambda () (setq coding-system-for-read 'utf-8)))
+(add-hook 'org-mode-hook (lambda ()
+                           (setq coding-system-for-read 'utf-8)
+                           (setq coding-system-for-write 'utf-8)))
+
