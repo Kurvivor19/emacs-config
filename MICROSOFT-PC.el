@@ -23,3 +23,19 @@
                            (setq coding-system-for-read 'utf-8)
                            (setq coding-system-for-write 'utf-8)))
 
+;; explicitrly specify names of dlls for libjpeg and gnutls
+(defun krv/sublist_append (listvar sym newel)
+  "Append newel to the sublist of listvar that starts with sym"
+  (let ((elem (find sym listvar :key 'car)))
+    (if elem
+        (setcdr (last elem)
+                (list newel)))))
+
+(krv/sublist_append dynamic-library-alist 'jpeg "libjpeg-62.dll")
+(krv/sublist_append dynamic-library-alist 'gnutls "libgnutls-30.dll")
+
+;; set gnutls trustfile
+(require 'gnutls)
+(setq gnutls-trustfiles (append gnutls-trustfiles
+                                `(,(concat dotfiles-dir "/config/cacert.pem"))
+                                `(,(concat dotfiles-dir "/config/ca-bundle.crt"))))
