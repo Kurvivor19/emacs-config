@@ -55,5 +55,9 @@
 ;; setup org-journal
 (setq org-journal-dir (concat org-directory "/journal/"))
 (require 'org-journal)
+;; disable C-c C-j for new journal entry
+;; accidentally creating 
+(global-set-key (kbd "C-c C-j") 'idomenu)
+
 
 (provide 'org-local)

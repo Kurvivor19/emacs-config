@@ -15,6 +15,13 @@
 (setenv "PATH" (concat (getenv "PATH") ";c:\\octave-4.0.0\\bin"))
 (setq exec-path (append exec-path '("c:/octave-4.0.0/bin")))
 
+;; tramp setup
+(setq tramp-default-method "pscp")
+;; putty paths
+(setenv "PATH" (concat (getenv "PATH") ";c:\\Program Files (x86)\\PuTTY"))
+(setq exec-path (append exec-path '("c:/Program Files (x86)/PuTTY")))
+
+
 (require 'russification)
 
 ;; for info-mode
@@ -22,6 +29,15 @@
 (add-hook 'org-mode-hook (lambda ()
                            (setq coding-system-for-read 'utf-8)
                            (setq coding-system-for-write 'utf-8)))
+
+;; add function for starting a msys shell
+(defun msys-shell ()
+  "Run (shell) with explicit-shell-file-name set to sh.exe from msys"
+  (interactive)
+  (let ((explicit-shell-file-name "c:/msys-w32/1.0/bin/sh.exe"))
+    (setenv "MSYSTEM" "MSYS")
+    (setenv "MSYSCON" "sh.exe")
+    (call-interactively 'shell)))
 
 ;; explicitrly specify names of dlls for libjpeg and gnutls
 (defun krv/sublist_append (listvar sym newel)
