@@ -55,4 +55,14 @@
 
 (require 'idomenu)
 
+;; setup CC-mode
+(require 'cc-mode)
+(setq c-default-style
+      (cons '(c-mode . "bsd") c-default-style))
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq c-basic-offset 4)
+            (setq coding-system-for-read 'utf-8-unix)
+            (setq coding-system-for-write 'utf-8-unix)))
+
 (provide 'packages-preload)

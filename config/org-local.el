@@ -52,8 +52,18 @@
 (setq org-agenda-restore-windows-after-quit t)
 (setq org-agenda-window-setup 'current-window)
 
+;; custom agenda view(s)
+(setq org-agenda-custom-commands
+      (append org-agenda-custom-commands
+               '(("d" "Undated tasks" alltodo ""
+                 ((org-agenda-todo-ignore-with-date t))))))
+
 ;; setup org-journal
 (setq org-journal-dir (concat org-directory "/journal/"))
 (require 'org-journal)
+;; disable C-c C-j for new journal entry
+;; accidentally creating 
+(global-set-key (kbd "C-c C-j") 'idomenu)
+
 
 (provide 'org-local)
