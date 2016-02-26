@@ -1,3 +1,4 @@
+;-*-coding:utf-8-*-
 ;;; preload packages that are likely to be used all the time
 
 ;; remember file places between sessions
@@ -64,5 +65,32 @@
             (setq c-basic-offset 4)
             (setq coding-system-for-read 'utf-8-unix)
             (setq coding-system-for-write 'utf-8-unix)))
+
+;; from http://quantumtheory.physik.unibas.ch/people/shalaev/linux/_emacs.html
+;; setup calendar
+(setq calendar-week-start-day 1)	; start week from monday
+(setq european-calendar-style 't)	; dates in dd/mm fromat
+;; set up holidays
+; (setq general-holidays nil)
+(setq hebrew-holidays nil)
+(setq islamic-holidays nil)
+(setq holiday-christian-holidays nil)
+(setq holiday-bahai-holidays nil)
+(setq holiday-oriental-holidays nil)
+
+(setq other-holidays
+      '((holiday-fixed 5 01 "День международной солидарности трудащихся")
+         (holiday-fixed 2 23 "День Защитника Отечества")
+         (holiday-fixed 3 8 "Международный женский день")
+         (holiday-fixed 11 7 "Годовщина Октябрьской Социалистической революции")
+         (holiday-fixed 4 12 "День космонавтики")
+
+         (holiday-float 10 0 1 "День учителя")))
+
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)
+(add-hook 'calendar-initial-window-hook 'calendar-mark-holidays)
+
+;; setup diary
+(setq diary-file (concat org-directory "/anniversaries.txt"))
 
 (provide 'packages-preload)
