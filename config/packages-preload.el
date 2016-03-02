@@ -91,6 +91,7 @@
 (add-hook 'calendar-initial-window-hook 'calendar-mark-holidays)
 
 ;; setup diary
+(require 'org)
 (setq diary-file (concat org-directory "/anniversaries.txt"))
 
 (provide 'packages-preload)
