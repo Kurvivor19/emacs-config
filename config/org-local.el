@@ -54,7 +54,7 @@
 
 ;; custom agenda view(s)
 (setq org-agenda-custom-commands
-      '(("n" "Agenda and all TODOs"
+      '(("n" "Agenda and all TODO's"
          ((agenda "")
           (alltodo "")))
         ("d" "Undated tasks" alltodo ""

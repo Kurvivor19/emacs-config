@@ -1,4 +1,4 @@
-;; Устанавливаем языковую среду
+;; РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЏР·С‹РєРѕРІСѓСЋ СЃСЂРµРґСѓ
 (set-language-environment 'Cyrillic-KOI8)
 
 (set-input-method 'russian-computer)

@@ -20,6 +20,9 @@
 (setq custom-file (concat dotfiles-dir "custom.el"))
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 
+;; use customizations
+(load custom-file)
+
 (require 'packages-init)
 (require 'packages-preload)
 (require 'display-config)
@@ -32,8 +35,6 @@
 (package-initialize)
 (elpy-enable)
 (helm-projectile-on)
-;; use customizations
-(load custom-file)
 
 ;; System-specific config loading from ESK
 (setq system-specific-config (concat dotfiles-dir system-name ".el"))

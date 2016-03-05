@@ -2,8 +2,8 @@
 ;; handles loading of packages
 
 (require 'package)
-(dolist (source '(("melpa" . "http://melpa.milkbox.net/packages/")
-		  ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+(dolist (source '(("melpa" . "http://melpa.org/packages/")
+		  ("melpa-stable" . "http://stable.melpa.org/packages/")
                   ))
   (add-to-list 'package-archives source t))
 (package-initialize)
