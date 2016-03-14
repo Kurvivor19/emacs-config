@@ -20,4 +20,5 @@
                                               (nnimap-expunge t)
                                               (nnimap-stream ssl))
                                       ))
-
+(setq gnus-summary-line-format
+      "%U%R%z%I<%o>%(%[%4L: %-23,23f%]%) %s\n")
