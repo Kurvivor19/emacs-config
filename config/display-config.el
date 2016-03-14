@@ -10,10 +10,11 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; load color scheme
-(load-theme 'wombat nil nil)
+(load-theme 'leuven nil nil)
 
 ;; ensure time is displayed
 (display-time-mode 1)
 
 (provide 'display-config)
+
 
