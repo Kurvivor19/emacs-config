@@ -1,5 +1,8 @@
 ;;; gnus setup
 
+(setq user-mail-adress "trus19@gmail.com")
+(setq user-full-name "Ivan Truskov")
+
 (setq gnus-select-method '(nnnil "")
       gnus-secondary-select-methods '((nnimap "gmail"
                                               (nnimap-address "imap.gmail.com")

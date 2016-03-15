@@ -51,6 +51,7 @@
 ;; set agenda view to restore windows on exit
 (setq org-agenda-restore-windows-after-quit t)
 (setq org-agenda-window-setup 'current-window)
+(setq org-agenda-include-diary t)
 
 ;; custom agenda view(s)
 (setq org-agenda-custom-commands
@@ -66,6 +67,5 @@
 ;; disable C-c C-j for new journal entry
 ;; accidentally creating 
 (global-set-key (kbd "C-c C-j") 'idomenu)
-
 
 (provide 'org-local)
