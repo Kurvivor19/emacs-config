@@ -85,6 +85,7 @@
          (holiday-fixed 11 7 "Годовщина Октябрьской Социалистической революции")
          (holiday-fixed 4 12 "День космонавтики")
 
+         (holiday-julian 3 25 "Благовещение Пресвятой Богородицы")
          (holiday-float 10 0 1 "День учителя")))
 
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
