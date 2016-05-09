@@ -84,7 +84,7 @@
          (holiday-fixed 3 8 "Международный женский день")
          (holiday-fixed 11 7 "Годовщина Октябрьской Социалистической революции")
          (holiday-fixed 4 12 "День космонавтики")
-
+         (holiday-fixed 5 09 "День Победы в Великой Отечественной войне")
          (holiday-float 10 0 1 "День учителя")))
 
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
