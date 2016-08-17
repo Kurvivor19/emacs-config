@@ -16,6 +16,8 @@
                                                  (from ".*reply.*" "gmail.notifications")
                                                  (from ".*notif.*" "gmail.notifications")
                                                  (from ".*hetzner\\.com.*" "gmail.notifications")
+                                                 (from ".*edx\\.org" "gmail.notifications")
+                                                 (from ".*paypal\\.com" "gmail.notifications")
                                                  ("Reply-To" ".*reply.*" "gmail.notifications")
                                                  "gmail.rest"
                                                  ))) 

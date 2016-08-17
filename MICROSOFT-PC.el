@@ -29,7 +29,7 @@
 (add-hook 'org-mode-hook (lambda ()
                            (make-local-variable 'coding-system-for-read)
                            (make-local-variable 'coding-system-for-write)
-                           (setq coding-system-for-read 'utf-8)
+                           (setq coding-system-for-read 'utf-8-dos)
                            (setq coding-system-for-write 'utf-8)))
 
 ;; add function for starting a msys shell
@@ -57,3 +57,11 @@
 (setq gnutls-trustfiles (append gnutls-trustfiles
                                 `(,(concat dotfiles-dir "/config/cacert.pem"))
                                 `(,(concat dotfiles-dir "/config/ca-bundle.crt"))))
+
+;; setup grep usage
+(grep-apply-setting 'grep-command "\"c:\\Program Files (x86)\\Git\\bin\\grep.exe\" -nH -e")
+
+;; parifinder-mode
+(add-to-list 'load-path "d:/parifinder/parinfer-mode")
+(require 'parinfer-mode)
+(add-hook 'emacs-lisp-mode-hook 'parinfer-mode)

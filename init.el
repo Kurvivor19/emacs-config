@@ -34,6 +34,7 @@
 
 (package-initialize)
 (elpy-enable)
+(projectile-global-mode)
 (helm-projectile-on)
 
 ;; System-specific config loading from ESK

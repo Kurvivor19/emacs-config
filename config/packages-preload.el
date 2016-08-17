@@ -68,8 +68,8 @@
 
 ;; from http://quantumtheory.physik.unibas.ch/people/shalaev/linux/_emacs.html
 ;; setup calendar
-(setq calendar-week-start-day 1)	; start week from monday
-(setq european-calendar-style 't)	; dates in dd/mm fromat
+(setq calendar-week-start-day 1)  ; start week from monday
+(setq european-calendar-style 't)  ; dates in dd/mm fromat
 ;; set up holidays
 ; (setq general-holidays nil)
 (setq hebrew-holidays nil)
@@ -79,14 +79,17 @@
 (setq holiday-oriental-holidays nil)
 
 (setq other-holidays
-      '((holiday-fixed 5 01 "День международной солидарности трудащихся")
+      '((holiday-fixed 5 01 "День международной солидарности трудащихся"
          (holiday-fixed 2 23 "День Защитника Отечества")
          (holiday-fixed 3 8 "Международный женский день")
          (holiday-fixed 11 7 "Годовщина Октябрьской Социалистической революции")
          (holiday-fixed 4 12 "День космонавтики")
 
          (holiday-julian 3 25 "Благовещение Пресвятой Богородицы")
-         (holiday-float 10 0 1 "День учителя")))
+         (holiday-julian 6 29 "День святых первоверховных апостолов Петра и Павла")
+         (holiday-julian 8 6 "Преображение Господне")
+
+         (holiday-float 10 0 1 "День учителя"))))
 
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 (add-hook 'calendar-initial-window-hook 'calendar-mark-holidays)
