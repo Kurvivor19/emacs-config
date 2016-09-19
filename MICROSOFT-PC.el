@@ -15,12 +15,55 @@
 (setenv "PATH" (concat (getenv "PATH") ";c:\\octave-4.0.0\\bin"))
 (setq exec-path (append exec-path '("c:/octave-4.0.0/bin")))
 
+;; pandoc paths
+(setenv "PATH" (concat (getenv "PATH") ";c:\\Users\\Ivan\\AppData\\Local\\Pandoc"))
+(setq exec-path (append exec-path '("c:/Users/Ivan/AppData/Local/Pandoc")))
+
 ;; tramp setup
 (setq tramp-default-method "pscp")
 ;; putty paths
 (setenv "PATH" (concat (getenv "PATH") ";c:\\Program Files (x86)\\PuTTY"))
 (setq exec-path (append exec-path '("c:/Program Files (x86)/PuTTY")))
 
+;; aspell setup
+(setq
+ ispell-russian-dictionary "russian"
+ ispell-english-dictionary "english")
+ 
+
+(custom-set-variables
+  ;; i like aspell, and you?
+ '(ispell-program-name "aspell")
+
+; my dictionary-alist, using for redefinition russian dictionary
+ '(ispell-dictionary-alist
+   '(("russian"  ;; Russian
+;        "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
+;        "[^АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
+      "\\cy"
+      "\\Cy" 
+      "[-]"
+      nil
+      ("-C" "-d" "ru-yeyo.multi"
+       nil utf-8))
+     ("english"                       ; English
+      "[a-zA-Z]"
+      "[^a-zA-Z]"
+      "[']"
+      nil
+      ("-d" "en_GB.multi" "--add-extra-dicts=en_GB-variant_1.multi"
+       nil iso-8859-1))
+     (nil ;; Default
+      "[A-Za-z]"
+      "[^A-Za-z]"
+      "[']"
+      nil
+      ("-C"
+       nil iso-8859-1))))
+ '(flyspell-default-dictionary ispell-russian-dictionary)
+ '(ispell-dictionary ispell-english-dictionary)
+ '(ispell-local-dictionary ispell-russian-dictionary)
+ '(ispell-extra-args '("--sug-mode=ultra" "--prefix=c:/mingw_mine")))
 
 (require 'russification)
 
