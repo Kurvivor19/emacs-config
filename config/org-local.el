@@ -15,8 +15,13 @@
 
 ;; todo keywords
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n/!)" "|" "DONE(d!)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
+      (quote ((sequence "LATER(l)" "TODO(t!)" "CHECK(c!)" "|" "DONE(d)")
+              (sequence "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
+
+;; ensure TODOs respect hierarchy
+(setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t)
+(setq org-log-done 'time)
 
 ;; capture setup
 ;; org-directory is supposed to be customized
@@ -25,13 +30,17 @@
 ;; capture templates
 (setq org-capture-templates
  '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-        "* TODO %?\n  %t\n  %a\n")
+        "* TODO %?\n  %t\n  %a\n" :kill-buffer)
    ("n" "Note" entry (file+headline org-default-notes-file "Notes")
-        "* %? :NOTE:\n  At %u from %a\n")
+        "* %? :NOTE:\n  At %u from %a\n" :kill-buffer)
    ("r" "Kill-ring note" entry (file+headline org-default-notes-file "Notes")
-        "* %?%c :NOTE:\n  %u (from %a)\n")
+        "* %? :NOTE:\n  %c\n  %u (from %a)\n" :kill-buffer)
    ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
-        "* %?%x :NOTE:\n  %u\n")))
+        "* %? :NOTE:\n  %c\n  %u\n" :kill-buffer)
+   ("q" "Quick note (kill ring)" entry (file+headline org-default-notes-file "Notes")
+        "* %c :NOTE:\n  %u (from %a)\n" :kill-buffer :immediate-finish)
+   ("w" "Quick note (clipboard)" entry (file+headline org-default-notes-file "Notes")
+        "* %x :NOTE:\n  %u\n" :kill-buffer :immediate-finish)))
 
 ;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((org-agenda-files . (:maxlevel . 3)))))
