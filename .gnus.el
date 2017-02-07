@@ -1,6 +1,6 @@
 ;;; gnus setup
 
-(setq user-mail-adress "trus19@gmail.com")
+(setq user-mail-address "trus19@gmail.com")
 (setq user-full-name "Ivan Truskov")
 
 (setq gnus-select-method '(nnnil "")
@@ -19,8 +19,8 @@
                                                  (from ".*edx\\.org" "gmail.notifications")
                                                  (from ".*paypal\\.com" "gmail.notifications")
                                                  ("Reply-To" ".*reply.*" "gmail.notifications")
-                                                 "gmail.rest"
-                                                 ))) 
+                                                 "gmail.rest")))
+                                                  
                                       (nnimap "yandex"
                                               (nnimap-address "imap.yandex.ru")
                                               (nnimap-server-port 993)
@@ -37,14 +37,16 @@
                                                (|
                                                 (from ".*@warforge\\.ru.*" "mailru.notifications")
                                                 (from ".*@myheritage\\.com.*" "mailru.notifications")
+                                                (from ".*@playdekgames.com" "mailru.notifications")
                                                 (from ".*@beeline\\.ru.*" "mailru.notifications")
+                                                (from "*.forum.tinycorelinux.net.*" "mailru.notifications")
                                                 (from ".*Alpha Centauri 2.*" "mailru.notifications")
                                                 (any ".*nadezhda0705@ya\\.ru.*" "mailru.education")
                                                 (from ".*CodeProject.*" "mailru.feed")
                                                 (from ".*sourceforge\\.net.*" "mailru.feed")
-                                                "mailru.rest"
-                                                )))
-                                      (nntp "news.gwene.org")                                            
-                                      ))
+                                                "mailru.rest")))
+                                                
+                                      (nntp "news.gwene.org")))                                            
+                                      
 (setq gnus-summary-line-format
       "%U%R%z%I<%o>%(%[%4L: %-23,23f%]%) %s\n")
