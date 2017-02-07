@@ -8,7 +8,7 @@
 (setq exec-path (append exec-path '("c:/Program Files (x86)/Git/bin")))
 
 ;; mingw paths
-(setenv "PATH" (concat (getenv "PATH") ";c:\\mingw_mine\\bin"))
+(setenv "PATH" (concat "c:\\mingw_mine\\bin;" (getenv "PATH")))
 (setq exec-path (append exec-path '("c:/mingw_mine/bin")))
 
 ;; Octave paths
@@ -29,7 +29,6 @@
 (setq
  ispell-russian-dictionary "russian"
  ispell-english-dictionary "english")
- 
 
 (custom-set-variables
   ;; i like aspell, and you?
@@ -38,8 +37,6 @@
 ; my dictionary-alist, using for redefinition russian dictionary
  '(ispell-dictionary-alist
    '(("russian"  ;; Russian
-;        "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
-;        "[^АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя]"
       "\\cy"
       "\\Cy" 
       "[-]"
