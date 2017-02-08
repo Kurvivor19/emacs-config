@@ -61,9 +61,11 @@
   (global-set-key (kbd "<f5>") 'user-map-f5)
   ;; This causes ERC to connect to the Freenode network upon hitting
   ;; <f5> e
-  (define-key user-map-f5 (kbd "e") (lambda () (interactive)
-                           (erc :server "irc.freenode.net"
-                                :nick "Kurvivor" :password "exodus")))
+  (define-key user-map-f5 (kbd "e")
+    (lambda ()
+      (interactive
+        (erc :server "irc.freenode.net"
+             :nick "Kurvivor" :password "exodus"))))
   ;; g for git
   (define-key user-map-f5 (kbd "g") 'magit-status)
   ;; m for mercurial
@@ -73,16 +75,16 @@
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t
-	x-select-enable-primary t
-	save-interprogram-paste-before-kill t
-	apropos-do-all t
-	mouse-yank-at-point t
-	require-final-newline t
-	visible-bell t
-	ediff-window-setup-function 'ediff-setup-windows-plain
-	save-place-file (concat user-emacs-directory "places")
-	backup-directory-alist `(("." . ,(concat user-emacs-directory
-						 "backups"))))
+        x-select-enable-primary t
+        save-interprogram-paste-before-kill t
+        apropos-do-all t
+        mouse-yank-at-point t
+        require-final-newline t
+        visible-bell t
+        ediff-window-setup-function 'ediff-setup-windows-plain
+        save-place-file (concat user-emacs-directory "places")
+        backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                                 "backups"))))
   (defun select-current-line ()
     "Select the current line"
     (interactive)
@@ -91,12 +93,9 @@
   (global-set-key (kbd "C-S-l") 'select-current-line)
   
   (add-hook 'python-mode-hook
-	  (lambda ()
-	    (define-key python-mode-map [remap imenu]
-	      'idomenu)
-            )
-          )
-)
-
+    (lambda ()
+      (define-key python-mode-map [remap imenu]
+        'idomenu))))
+            
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here

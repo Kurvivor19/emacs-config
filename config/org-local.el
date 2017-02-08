@@ -15,7 +15,7 @@
 
 ;; todo keywords
 (setq org-todo-keywords
-      (quote ((sequence "LATER(l)" "TODO(t!)" "CHECK(c!)" "|" "DONE(d)")
+      (quote ((sequence "LATER(l)" "TODO(t!)" "CHECK(k!)" "|" "DONE(d)")
               (sequence "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
 
 ;; ensure TODOs respect hierarchy
@@ -69,6 +69,35 @@
           (alltodo "")))
         ("d" "Undated tasks" alltodo ""
          ((org-agenda-todo-ignore-with-date t)))))
+
+(require 'cl)
+(defun krv/toggle-tag (tag)
+  "Set or remove TAG for current headline
+TAG if removed, if present among tags or added last if it is not"
+  ;; do not bother with tags table here
+  (interactive  "sTag to switch: ")
+  (save-excursion
+    (save-match-data
+      ;; this moves back to heading
+      (org-back-to-heading)
+      (let ((current-tags (org-get-tags-string)))
+        (if (string-match tag current-tags)
+            ;; remove tag that was found
+            (org-set-tags-to
+             (cl-remove tag (split-string current-tags ":" t "[[:blank:]]")
+                        :test 'string-match))
+          (org-set-tags-to (concat current-tags ":" tag)))))))
+
+(defun krv/org-toggle-focus ()
+  "Toggle :FOCUS: tag on current org heading"
+  (interactive)
+  (krv/toggle-tag "FOCUS"))
+
+(add-hook 'org-mode-hook (lambda()
+                           (define-key
+                             org-mode-map (kbd "C-c f")
+                             'krv/org-toggle-focus)))
+
 
 ;; setup org-journal
 (setq org-journal-dir (concat org-directory "/journal/"))
