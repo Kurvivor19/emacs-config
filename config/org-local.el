@@ -20,7 +20,7 @@
 
 ;; ensure TODOs respect hierarchy
 (setq org-enforce-todo-dependencies t)
-(setq org-enforce-todo-checkbox-dependencies t)
+; (setq org-enforce-todo-checkbox-dependencies t)
 (setq org-log-done 'time)
 
 ;; capture setup
