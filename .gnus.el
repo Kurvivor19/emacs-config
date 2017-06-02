@@ -18,6 +18,7 @@
                                                  (from ".*hetzner\\.com.*" "gmail.notifications")
                                                  (from ".*edx\\.org" "gmail.notifications")
                                                  (from ".*paypal\\.com" "gmail.notifications")
+                                                 (to "emacs-orgmode@gnu.org" "gmail.feed")
                                                  ("Reply-To" ".*reply.*" "gmail.notifications")
                                                  "gmail.rest")))
                                                   

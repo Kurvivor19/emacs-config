@@ -38,7 +38,7 @@
 (helm-projectile-on)
 
 ;; System-specific config loading from ESK
-(setq system-specific-config (concat dotfiles-dir system-name ".el"))
+(setq system-specific-config (concat dotfiles-dir (system-name) ".el"))
 (if (file-exists-p system-specific-config) (load system-specific-config))
 
 ;; set up org mode usage

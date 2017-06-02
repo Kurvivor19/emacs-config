@@ -15,16 +15,15 @@
 (require 'cl-lib)
 
 (defvar mine-packages (list 'idle-highlight-mode
-			    'ruby-mode
-			    'inf-ruby
-			    'yaml-mode
 			    'magit
-			    'ahg
 			    'autopair
                             'buffer-move
                             'elpy
 			    'company
 			    'company-jedi
+			    'helm
+			    'projectile
+			    'emms
                             'helm-projectile
                             'org-journal
 			    )

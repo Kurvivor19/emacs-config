@@ -20,7 +20,7 @@
 
 ;; ensure TODOs respect hierarchy
 (setq org-enforce-todo-dependencies t)
-(setq org-enforce-todo-checkbox-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies nil)
 (setq org-log-done 'time)
 
 ;; capture setup
@@ -37,7 +37,7 @@
         "* %? :NOTE:\n  %c\n  %u (from %a)\n" :kill-buffer)
    ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
         "* %? :NOTE:\n  %c\n  %u\n" :kill-buffer)
-   ("q" "Quick note (kill ring)" entry (file+headline org-default-notes-file "Notes")
+   ("k" "Quick note (kill ring)" entry (file+headline org-default-notes-file "Notes")
         "* %c :NOTE:\n  %u (from %a)\n" :kill-buffer :immediate-finish)
    ("w" "Quick note (clipboard)" entry (file+headline org-default-notes-file "Notes")
         "* %x :NOTE:\n  %u\n" :kill-buffer :immediate-finish)))
