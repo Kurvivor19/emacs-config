@@ -30,6 +30,9 @@
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
+;; activte windmove for simpler window movement
+(require 'windmove)
+(windmove-default-keybindings)
 
 ;; enable quick yes
 (require 'quick-yes)
@@ -41,10 +44,10 @@
 (autopair-global-mode)
 
 ;; ensure ahg is loaded
-(eval-after-load "vc-hg"
-  '(require 'ahg))
+;; (eval-after-load "vc-hg"
+;;   '(require 'ahg))
 
-(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+;; (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 ;; change gnus configuration file location to keep it inside repository dir
 (setq gnus-init-file (concat dotfiles-dir ".gnus.el"))
