@@ -102,6 +102,7 @@
 
 ;; setup diary
 (require 'org)
+(customize-set-value calendar-date-style 'european)
 (setq diary-file (concat org-directory "/anniversaries.txt"))
 
 (provide 'packages-preload)
