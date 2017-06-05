@@ -5,5 +5,5 @@
 ;; setup my list of nicknames
 (setq erc-nick 
       (append erc-nick
-              '("Kurvivor" "survivor_19")))
+              '("survivor_19" "Kurvivor")))
 
