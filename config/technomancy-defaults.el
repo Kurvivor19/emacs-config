@@ -72,6 +72,8 @@
   (define-key user-map-f5 (kbd "m") 'ahg-status)
   ;; p for projectile
   (define-key user-map-f5 (kbd "p") 'helm-projectile)
+  ;; j for new journal entry
+  (define-key user-map-f5 (kbd "j") 'org-journal-new-entry)
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t

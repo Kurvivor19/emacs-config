@@ -83,6 +83,8 @@
 (setq holiday-bahai-holidays nil)
 (setq holiday-oriental-holidays nil)
 
+(customize-set-value calendar-date-style 'european)
+
 (setq other-holidays
       '((holiday-fixed 5 01 "День международной солидарности трудащихся")
         (holiday-fixed 2 23 "День Защитника Отечества")
@@ -102,7 +104,6 @@
 
 ;; setup diary
 (require 'org)
-(customize-set-value calendar-date-style 'european)
 (setq diary-file (concat org-directory "/anniversaries.txt"))
 
 (provide 'packages-preload)
