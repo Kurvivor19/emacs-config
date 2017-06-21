@@ -73,6 +73,7 @@
 
 ;; from http://quantumtheory.physik.unibas.ch/people/shalaev/linux/_emacs.html
 ;; setup calendar
+(require 'calendar)
 (setq calendar-week-start-day 1)  ; start week from monday
 (setq european-calendar-style 't)  ; dates in dd/mm fromat
 ;; set up holidays
