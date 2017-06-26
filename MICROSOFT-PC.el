@@ -41,22 +41,22 @@
       "\\Cy" 
       "[-]"
       nil
-      ("-C" "-d" "ru-yeyo.multi"
-       nil utf-8))
+      ("-C" "-d" "ru-yeyo.multi")
+      nil utf-8)
      ("english"                       ; English
       "[a-zA-Z]"
       "[^a-zA-Z]"
       "[']"
       nil
-      ("-d" "en_GB.multi" "--add-extra-dicts=en_GB-variant_1.multi"
-       nil iso-8859-1))
+      ("-d" "en_GB.multi" "--add-extra-dicts=en_GB-variant_1.multi")
+      nil iso-8859-1)
      (nil ;; Default
       "[A-Za-z]"
       "[^A-Za-z]"
       "[']"
       nil
-      ("-C"
-       nil iso-8859-1))))
+      ("-C")
+      nil iso-8859-1)))
  '(flyspell-default-dictionary ispell-russian-dictionary)
  '(ispell-dictionary ispell-english-dictionary)
  '(ispell-local-dictionary ispell-russian-dictionary)
