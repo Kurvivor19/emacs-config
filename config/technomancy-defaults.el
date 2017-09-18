@@ -40,7 +40,8 @@
 
   (global-set-key (kbd "C-x M-b") 'helm-buffers-list)
   (global-set-key (kbd "C-x C-b") 'ibuffer)
-  ; (global-set-key (kbd "M-z") 'zap-up-to-char)
+  (require 'misc)
+  (global-set-key (kbd "M-z") 'zap-up-to-char)
   (global-set-key (kbd "C-s") 'isearch-forward-regexp)
   (global-set-key (kbd "C-r") 'isearch-backward-regexp)
   (global-set-key (kbd "C-M-s") 'isearch-forward)
@@ -64,8 +65,8 @@
   (define-key user-map-f5 (kbd "e")
     (lambda ()
       (interactive
-        (erc :server "irc.freenode.net"
-             :nick "Kurvivor" :password "exodus"))))
+       (erc :server "irc.freenode.net"
+            :nick "Kurvivor" :password "exodus"))))
   ;; g for git
   (define-key user-map-f5 (kbd "g") 'magit-status)
   ;; m for mercurial
@@ -93,11 +94,25 @@
     (end-of-line) ; move to end of line
     (set-mark (line-beginning-position)))
   (global-set-key (kbd "C-S-l") 'select-current-line)
-  
+  (defun krv/squeeze (p m)
+    "Convert region to CamelCase literal"
+    (interactive (if (use-region-p)
+                     (list (region-beginning) (region-end))
+                   (user-error "Region is not active")))
+    (when (use-region-p)
+      (let* ((region-string (buffer-substring p m))
+             (changed-string (save-match-data
+                               (apply 'concat (split-string (capitalize region-string)
+                                                            "[^[:word:]0-9]+"
+                                                            t)))))
+        (delete-region p m)
+        (insert-before-markers changed-string))))  
+  (global-set-key (kbd "C-c s") 'krv/squeeze)
+
   (add-hook 'python-mode-hook
-    (lambda ()
-      (define-key python-mode-map [remap imenu]
-        'idomenu))))
+            (lambda ()
+              (define-key python-mode-map [remap imenu]
+               'idomenu))))
             
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here

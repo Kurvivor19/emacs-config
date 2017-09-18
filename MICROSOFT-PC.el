@@ -25,10 +25,12 @@
 (setenv "PATH" (concat (getenv "PATH") ";c:\\Program Files (x86)\\PuTTY"))
 (setq exec-path (append exec-path '("c:/Program Files (x86)/PuTTY")))
 
-;; aspell setup
 (setq
  ispell-russian-dictionary "russian"
  ispell-english-dictionary "english")
+
+;; aspell setup
+(require 'ispell)
 
 (custom-set-variables
   ;; i like aspell, and you?
