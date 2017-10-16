@@ -106,13 +106,39 @@
                                                             "[^[:word:]0-9]+"
                                                             t)))))
         (delete-region p m)
-        (insert-before-markers changed-string))))  
+        (insert-before-markers changed-string))))
   (global-set-key (kbd "C-c s") 'krv/squeeze)
 
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key python-mode-map [remap imenu]
                'idomenu))))
-            
+
+(when nil
+  (defun krv/punto (p m))
+  "Repeat input after toggling input method"
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 nil))
+  (if (use-region-p)
+      (let* ((region-string (buffer-substring p m))
+             (old-input-method current-input-method)
+             (input-keys
+              (if (not old-input-method)
+                  ;; if there is no current input method, just take character
+                  (listify-key-sequence region-string)
+                ;; we have imput method, try to translate characters back
+                (cl-mapcan
+                 (lambda (ch)
+                   (let ((quail-list (quail-find-key ch)))
+                     (if (equal quail-list t)
+                         (list ch)
+                      quail-list)))
+                 region-string))))                 
+        (delete-region p m)
+        ;(toggle-input-method)
+        (nconc unread-command-events input-keys))
+    (call-interactively 'toggle-input-method)))
+
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here

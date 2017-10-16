@@ -106,4 +106,8 @@ TAG if removed, if present among tags or added last if it is not"
 ;; accidentally creating 
 (global-set-key (kbd "C-c C-j") 'idomenu)
 
+
+;; setup org-babel
+(require 'ob-C)
+
 (provide 'org-local)
