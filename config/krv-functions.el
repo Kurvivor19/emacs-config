@@ -11,7 +11,7 @@
 Otherwise, toggle input method"
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))
-                 nil))
+                 (list nil nil)))
   (if (use-region-p)
       (let* ((region-string (buffer-substring p m))
              (old-input-method current-input-method)
@@ -30,7 +30,7 @@ Otherwise, toggle input method"
                  region-string))))
         (delete-region p m)
         (toggle-input-method)
-        (setq unread-command-events (nconc unread-command-events input-keys)))
+        (setq unread-command-events (append unread-command-events input-keys)))
     (call-interactively 'toggle-input-method)))
 (global-set-key (kbd "C-\\") 'krv/punto)
 
