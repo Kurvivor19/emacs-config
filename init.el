@@ -29,6 +29,7 @@
 (require 'helm-config)
 (require 'helm-projectile)
 (require 'technomancy-defaults)
+(require 'krv-functions)
 (require 'irc-opener)
 
 

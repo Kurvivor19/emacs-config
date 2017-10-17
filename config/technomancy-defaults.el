@@ -88,57 +88,10 @@
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                  "backups"))))
-  (defun select-current-line ()
-    "Select the current line"
-    (interactive)
-    (end-of-line) ; move to end of line
-    (set-mark (line-beginning-position)))
-  (global-set-key (kbd "C-S-l") 'select-current-line)
-  (defun krv/squeeze (p m)
-    "Convert region to CamelCase literal"
-    (interactive (if (use-region-p)
-                     (list (region-beginning) (region-end))
-                   (user-error "Region is not active")))
-    (when (use-region-p)
-      (let* ((region-string (buffer-substring p m))
-             (changed-string (save-match-data
-                               (apply 'concat (split-string (capitalize region-string)
-                                                            "[^[:word:]0-9]+"
-                                                            t)))))
-        (delete-region p m)
-        (insert-before-markers changed-string))))
-  (global-set-key (kbd "C-c s") 'krv/squeeze)
-
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key python-mode-map [remap imenu]
                'idomenu))))
-
-(when nil
-  (defun krv/punto (p m))
-  "Repeat input after toggling input method"
-  (interactive (if (use-region-p)
-                   (list (region-beginning) (region-end))
-                 nil))
-  (if (use-region-p)
-      (let* ((region-string (buffer-substring p m))
-             (old-input-method current-input-method)
-             (input-keys
-              (if (not old-input-method)
-                  ;; if there is no current input method, just take character
-                  (listify-key-sequence region-string)
-                ;; we have imput method, try to translate characters back
-                (cl-mapcan
-                 (lambda (ch)
-                   (let ((quail-list (quail-find-key ch)))
-                     (if (equal quail-list t)
-                         (list ch)
-                      quail-list)))
-                 region-string))))                 
-        (delete-region p m)
-        ;(toggle-input-method)
-        (nconc unread-command-events input-keys))
-    (call-interactively 'toggle-input-method)))
 
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here
