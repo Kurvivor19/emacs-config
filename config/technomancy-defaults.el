@@ -75,6 +75,8 @@
   (define-key user-map-f5 (kbd "p") 'helm-projectile)
   ;; j for new journal entry
   (define-key user-map-f5 (kbd "j") 'org-journal-new-entry)
+  ;; d for helm-dash
+  (define-key user-map-f5 (kbd "d") 'helm-dash-at-point)
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t
@@ -87,7 +89,19 @@
         ediff-window-setup-function 'ediff-setup-windows-plain
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                                 "backups"))))
+                                                 "backups")))
+        helm-mode-fuzzy-match t
+
+        helm-buffers-fuzzy-matching t ; fuzzy matching buffer names when non-nil
+                                        ; useful in helm-mini that lists buffers
+        helm-org-headings-fontify t
+        helm-semantic-fuzzy-match t
+        helm-M-x-fuzzy-match t
+        helm-imenu-fuzzy-match t
+        helm-lisp-fuzzy-completion t
+        helm-buffer-skip-remote-checking t
+        helm-locate-fuzzy-match t)
+
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key python-mode-map [remap imenu]

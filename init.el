@@ -26,17 +26,13 @@
 (require 'packages-init)
 (require 'packages-preload)
 (require 'display-config)
-(require 'helm-config)
-(require 'helm-projectile)
 (require 'technomancy-defaults)
 (require 'krv-functions)
 (require 'irc-opener)
-
+(require 'c-edit)
 
 (package-initialize)
 (elpy-enable)
-(projectile-global-mode)
-(helm-projectile-on)
 
 ;; System-specific config loading from ESK
 (setq system-specific-config (concat dotfiles-dir (system-name) ".el"))
@@ -48,3 +44,6 @@
 (server-start)
 ;; Open list of recent files as initial buffer
 (recentf-open-files)
+
+(projectile-mode)
+(helm-projectile-on)

@@ -6,32 +6,21 @@
 ;;; Code:
 ;;;###autoload
 
-(defun krv/punto (p m)
+(defun krv/punto (&optional beg end)
   "With region, re-type string from that region after toggling input method.
 Otherwise, toggle input method"
-  (interactive (if (use-region-p)
-                   (list (region-beginning) (region-end))
-                 (list nil nil)))
-  (if (use-region-p)
-      (let* ((region-string (buffer-substring p m))
-             (old-input-method current-input-method)
-             (input-keys
-              (if (not old-input-method)
-                  ;; if there is no current input method, just take character
-                  (listify-key-sequence region-string)
-                ;; we have imput method, try to translate characters back
-                (cl-mapcan
-                 (lambda (ch)
-                   (let ((quail-list (quail-find-key ch)))
-                     (if (equal quail-list t)
-                         (list ch)
-                       (cl-mapcan (lambda (str) (listify-key-sequence str))
-                                  quail-list))))
-                 region-string))))
-        (delete-region p m)
+  (interactive (and (use-region-p)
+                    (list (region-beginning) (region-end))))
+  (let* ((events (and beg end
+                      (cl-mapcan
+                       (lambda (ch)
+                         (let ((quail-list (quail-find-key ch)))
+                           (if (booleanp quail-list)
+                               (list ch)
+                             (cl-mapcan 'listify-key-sequence quail-list))))
+                       (delete-and-extract-region beg end)))))
         (toggle-input-method)
-        (setq unread-command-events (append unread-command-events input-keys)))
-    (call-interactively 'toggle-input-method)))
+        (setq unread-command-events (nconc events unread-command-events))))
 (global-set-key (kbd "C-\\") 'krv/punto)
 
 ;; this is from technomancy's code
