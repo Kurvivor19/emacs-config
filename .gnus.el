@@ -36,6 +36,7 @@
                                               (nnimap-split-methods nnimap-split-fancy)
                                               (nnimap-split-fancy
                                                (|
+                                                (from ".*reply.*" "mailru.notifications")
                                                 (from ".*@warforge\\.ru.*" "mailru.notifications")
                                                 (from ".*@myheritage\\.com.*" "mailru.notifications")
                                                 (from ".*@playdekgames.com" "mailru.notifications")
