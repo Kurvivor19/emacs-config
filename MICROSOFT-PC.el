@@ -104,6 +104,6 @@
 (grep-apply-setting 'grep-command "\"c:\\Program Files (x86)\\Git\\bin\\grep.exe\" -nH -e")
 
 ;; parifinder-mode
-(add-to-list 'load-path "d:/parifinder/parinfer-mode")
-(require 'parinfer-mode)
-(add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
+;; (add-to-list 'load-path "d:/parifinder/parinfer-mode")
+;; (require 'parinfer-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)

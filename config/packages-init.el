@@ -3,8 +3,7 @@
 
 (require 'package)
 (dolist (source '(("melpa" . "http://melpa.org/packages/")
-		  ("melpa-stable" . "http://stable.melpa.org/packages/")
-                  ))
+		  ("melpa-stable" . "http://stable.melpa.org/packages/")))
   (add-to-list 'package-archives source t))
 (package-initialize)
 
@@ -17,15 +16,18 @@
 (defvar mine-packages (list 'idle-highlight-mode
 			    'magit
 			    'autopair
-                            'buffer-move
-                            'elpy
+			    'buffer-move
+			    'elpy
 			    'company
 			    'company-jedi
 			    'helm
+			    'helm-dash
 			    'projectile
 			    'emms
-                            'helm-projectile
-                            'org-journal
+			    'helm-projectile
+			    'org-journal
+			    'cmake-mode
+			    'cmake-project
 			    )
   "Libraries that should be installed by default.")
 
@@ -37,9 +39,7 @@
                 (functionp package))
       (message "Installing %s" (symbol-name package))
       (let ((debug-on-init nil))
-	(with-demoted-errors (package-install package))
-	)
-)))
+	(with-demoted-errors (package-install package))))))
 
 (defun check-if-online? ()
   "See if we're online.
@@ -49,9 +49,10 @@ just have to assume it's online."
   ;; TODO how could this work on Windows?
   (if (and (functionp 'network-interface-list)
            (network-interface-list))
-      (cl-some (lambda (iface) (unless (equal "lo" (car iface))
+      (cl-some (lambda (iface)
+		 (unless (equal "lo" (car iface))
                          (member 'up (cl-first (last (network-interface-info
-                                                   (car iface)))))))
+						      (car iface)))))))
             (network-interface-list))
     t))
 

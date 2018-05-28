@@ -61,16 +61,6 @@
 
 (require 'idomenu)
 
-;; setup CC-mode
-(require 'cc-mode)
-(setq c-default-style
-      (cons '(c-mode . "bsd") c-default-style))
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq c-basic-offset 4)
-            (setq coding-system-for-read 'utf-8-unix)
-            (setq coding-system-for-write 'utf-8-unix)))
-
 ;; from http://quantumtheory.physik.unibas.ch/people/shalaev/linux/_emacs.html
 ;; setup calendar
 (require 'calendar)
@@ -106,5 +96,11 @@
 ;; setup diary
 (require 'org)
 (setq diary-file (concat org-directory "/anniversaries.txt"))
+
+;; projectile and helm
+(require 'projectile)
+(require 'helm)
+(require 'helm-config)
+(require 'helm-projectile)
 
 (provide 'packages-preload)
