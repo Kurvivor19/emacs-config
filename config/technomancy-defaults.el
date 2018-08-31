@@ -51,7 +51,7 @@
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (global-set-key (kbd "C-x C-S-r") 'helm-recentf)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-c j") 'helm-imenu)
+  (global-set-key (kbd "C-c j") 'helm-semantic-or-imenu)
 
   (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
   (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
@@ -64,9 +64,9 @@
   ;; <f5> e
   (define-key user-map-f5 (kbd "e")
     (lambda ()
-      (interactive
-       (erc :server "irc.freenode.net"
-            :nick "Kurvivor" :password "exodus"))))
+      (interactive)
+      (erc :server "irc.freenode.net"
+           :nick "Kurvivor" :password "exodus")))
   ;; g for git
   (define-key user-map-f5 (kbd "g") 'magit-status)
   ;; m for mercurial

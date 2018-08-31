@@ -27,6 +27,11 @@
 (add-hook 'c-mode-common-hook
           'semantic-mode)
 
+(add-hook 'company-mode-hook
+          (lambda ()
+            (auto-complete-mode -1)))
+
+
 (define-key c-mode-map (kbd "<C-tab>") 'company-complete)
 (define-key c++-mode-map (kbd "<C-tab>") 'company-complete)
 
@@ -38,13 +43,19 @@
  '(helm-gtags-use-input-at-cursor t)
  '(helm-gtags-pulse-at-cursor t))
 
+(add-hook 'helm-gtags-mode
+          (lambda ()
+            (define-key helm-gtags-mode-map "\C-t" nil)
+            (define-key helm-gtags-mode-map "\e." 'helm-gtags-dwim)
+            ))
+
 (require 'helm-gtags)
 
 (add-hook 'c-mode-common-hook
           'helm-gtags-mode)
 
-(global-semanticdb-minor-mode 1)
-(global-semantic-idle-scheduler-mode 1)
-(global-semantic-stickyfunc-mode 1)
+;; (global-semanticdb-minor-mode 1)
+;; (global-semantic-idle-scheduler-mode 1)
+;; (global-semantic-stickyfunc-mode 1)
 
 (provide 'c-edit)
