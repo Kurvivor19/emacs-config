@@ -29,9 +29,8 @@
 (require 'technomancy-defaults)
 (require 'krv-functions)
 (require 'irc-opener)
-(require 'c-edit)
 
-(package-initialize)
+; (package-initialize)
 (elpy-enable)
 
 ;; System-specific config loading from ESK
@@ -47,3 +46,5 @@
 
 (projectile-mode)
 (helm-projectile-on)
+
+;(require 'c-edit)
