@@ -28,19 +28,19 @@
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
 ;; capture templates
-(setq org-capture-templates
+(custom-set-default 'org-capture-templates
  '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-        "* TODO %?\n  %t\n  %a\n" :kill-buffer)
+        "* TODO %?\n  %t\n  %a\n" :kill-buffer t)
    ("n" "Note" entry (file+headline org-default-notes-file "Notes")
-        "* %? :NOTE:\n  At %u from %a\n" :kill-buffer)
+        "* %? :NOTE:\n  At %u from %a\n" :kill-buffer t)
    ("r" "Kill-ring note" entry (file+headline org-default-notes-file "Notes")
-        "* %? :NOTE:\n  %c\n  %u (from %a)\n" :kill-buffer)
+        "* %? :NOTE:\n  %c\n  %u (from %a)\n" :kill-buffer t)
    ("b" "Clipboard note" entry (file+headline org-default-notes-file "Notes")
-        "* %? :NOTE:\n  %c\n  %u\n" :kill-buffer)
+        "* %? :NOTE:\n  %c\n  %u\n" :kill-buffer t)
    ("k" "Quick note (kill ring)" entry (file+headline org-default-notes-file "Notes")
-        "* %c :NOTE:\n  %u (from %a)\n" :kill-buffer :immediate-finish)
+        "* %c :NOTE:\n  %u (from %a)\n" :kill-buffer t :immediate-finish t)
    ("w" "Quick note (clipboard)" entry (file+headline org-default-notes-file "Notes")
-        "* %x :NOTE:\n  %u\n" :kill-buffer :immediate-finish)))
+        "* %x :NOTE:\n  %u\n" :kill-buffer t :immediate-finish t)))
 
 ;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((org-agenda-files . (:maxlevel . 3)))))
