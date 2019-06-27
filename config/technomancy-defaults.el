@@ -64,6 +64,7 @@
   ;; <f5> e
   (define-key user-map-f5 (kbd "e")
     (lambda ()
+      "Open freenode IRC on #emacs"
       (interactive)
       (erc :server "irc.freenode.net"
            :nick "Kurvivor" :password "exodus")))
@@ -71,12 +72,15 @@
   (define-key user-map-f5 (kbd "g") 'magit-status)
   ;; m for mercurial
   (define-key user-map-f5 (kbd "m") 'ahg-status)
-  ;; p for projectile
+  ;; p and r for projectile
   (define-key user-map-f5 (kbd "p") 'helm-projectile)
+  (define-key projectile-mode-map (kbd "<f5> r") 'projectile-command-map)
   ;; j for new journal entry
   (define-key user-map-f5 (kbd "j") 'org-journal-new-entry)
   ;; d for helm-dash
   (define-key user-map-f5 (kbd "d") 'helm-dash-at-point)
+  ;; b for speedbar
+  (define-key user-map-f5 (kbd "b") 'speedbar)
   (show-paren-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq x-select-enable-clipboard t

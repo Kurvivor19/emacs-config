@@ -35,6 +35,8 @@
 (define-key c-mode-map (kbd "<C-tab>") 'company-complete)
 (define-key c++-mode-map (kbd "<C-tab>") 'company-complete)
 
+(require 'helm-gtags)
+
 (custom-set-variables
  '(helm-gtags-prefix-key (kbd "C-c t"))
  '(helm-gtags-suggested-key-mapping t)
@@ -49,10 +51,8 @@
             (define-key helm-gtags-mode-map "\e." 'helm-gtags-dwim)
             ))
 
-(require 'helm-gtags)
-
-(add-hook 'c-mode-common-hook
-          'helm-gtags-mode)
+;; (add-hook 'c-mode-common-hook
+;;           'helm-gtags-mode)
 
 ;; (global-semanticdb-minor-mode 1)
 ;; (global-semantic-idle-scheduler-mode 1)
