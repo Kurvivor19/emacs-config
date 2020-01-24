@@ -45,6 +45,55 @@ Otherwise, toggle input method"
       (delete-region p m)
       (insert-before-markers changed-string))))
 
+(defun krv/last-char-check (&optional pos)
+  "Find previous non-whitespace character in current string.
+
+Return in form of (position . character) cons nor nil"
+  (save-excursion
+    (let ((cur-pos (or (and pos (goto-char pos))
+                       (point))))
+      (loop for prev-char = (preceding-char) then (preceding-char)
+            for back-pos = 0 then (1- back-pos)
+            when (bolp) return nil
+            ; known whitespaces listed
+            unless (member prev-char (list ?\ ?\xA0 ?\t)) return (cons back-pos prev-char)
+            else do (backward-char)))))
+
+(defun krv/unwrap-list-to-alist (list-form)
+  "Helper function for setting character substitutions"
+  (loop with first = (car list-form)
+        for (s1 s2 . nil) on list-form
+        if s2 collect (cons s1 s2)
+        else collect (cons s1 first)))
+
+(defvar cycle-symbols-alist nil
+  "list of characters used for symbol cycling")
+
+(defgroup cycle-symbols nil
+  "Group for cycling symbols")
+
+(defcustom cycle-symbols-lists-default
+  (list (list ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0) (list ?+ ?-) (list ?> ?< ?=))
+  "Default lists for symbol cycling"
+  :type 'sexp
+  :set (lambda (s val)
+         (set-default s val)
+         (setq cycle-symbols-alist (mapcan #'krv/unwrap-list-to-alist val))))
+
+(defun krv/cycle-symbols-command ()
+  "Cycle previous non-whitespace if there is a known substitution"
+  (interactive)
+  (let* ((check-pair (krv/last-char-check))
+         (pos (car check-pair))
+         (char (cdr check-pair))
+         (rchar (assoc char cycle-symbols-alist)))
+    (when (and check-pair rchar)
+      (forward-char pos)
+      (delete-backward-char 1)
+      (insert-char (cdr rchar))
+      (backward-char pos))))
+
+(global-set-key (kbd "C-<backspace>") 'krv/cycle-symbols-command)
 (global-set-key (kbd "C-c s") 'krv/squeeze)
 
 (provide 'krv-functions)
