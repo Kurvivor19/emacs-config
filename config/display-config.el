@@ -10,7 +10,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; load color scheme
-(load-theme 'leuven nil nil)
+(load-theme 'wombat nil nil)
 
 ;; ensure time is displayed
 (display-time-mode 1)

@@ -23,6 +23,8 @@
 ;; use customizations
 (load custom-file)
 
+(package-initialize)
+
 (require 'packages-init)
 (require 'packages-preload)
 (require 'display-config)
@@ -30,7 +32,6 @@
 (require 'krv-functions)
 (require 'irc-opener)
 
-; (package-initialize)
 (elpy-enable)
 
 ;; System-specific config loading from ESK

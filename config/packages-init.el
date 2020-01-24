@@ -17,6 +17,7 @@
 			    'magit
 			    'autopair
 			    'buffer-move
+                            'python-environment
 			    'elpy
 			    'company
 			    'company-jedi
