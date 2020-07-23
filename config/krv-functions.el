@@ -80,6 +80,35 @@ Return in form of (position . character) cons nor nil"
          (set-default s val)
          (setq cycle-symbols-alist (mapcan #'krv/unwrap-list-to-alist val))))
 
+(defconst cyrillic-symbol-lists
+  (list
+   ;; e-like letters
+   (list ?\N{CYRILLIC SMALL LETTER IE}
+         ?\N{CYRILLIC SMALL LETTER YAT}
+         ?\N{CYRILLIC SMALL LETTER IO}
+         ?\N{CYRILLIC CAPITAL LETTER IE}
+         ?\N{CYRILLIC CAPITAL LETTER YAT}
+         ?\N{CYRILLIC CAPITAL LETTER IO})
+   ;; i-like letters
+   (list ?и
+         ?\N{CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I}
+         ?\N{CYRILLIC SMALL LETTER SHORT I}
+         ?\N{CYRILLIC SMALL LETTER IZHITSA}
+         ?\N{CYRILLIC CAPITAL LETTER I}
+         ?\N{CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I}
+         ?\N{CYRILLIC CAPITAL LETTER SHORT I}
+         ?\N{CYRILLIC CAPITAL LETTER IZHITSA})
+   ;; f-like letters
+   (list ?\N{CYRILLIC SMALL LETTER EF}
+         ?\N{CYRILLIC SMALL LETTER FITA}
+         ?\N{CYRILLIC CAPITAL LETTER EF}
+         ?\N{CYRILLIC CAPITAL LETTER FITA})))
+
+;; add cyrillic substitutions
+(custom-set-variables
+ `(cycle-symbols-lists-default ,(append cycle-symbols-lists-default
+                                       cyrillic-symbol-lists)))
+
 (defun krv/cycle-symbols-command ()
   "Cycle previous non-whitespace if there is a known substitution"
   (interactive)
