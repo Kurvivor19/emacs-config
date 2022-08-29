@@ -1,10 +1,11 @@
 ;;; krv-funcitions.el
-
 ;; Copyright © 2017 Ivan Truskov
 ;; Author Ivan Truskov
 ;; Some commands i have composed for personal convenience
 ;;; Code:
 ;;;###autoload
+
+(require 'cl)
 
 (defun krv/punto (&optional beg end)
   "With region, re-type string from that region after toggling input method.
@@ -66,19 +67,20 @@ Return in form of (position . character) cons nor nil"
         if s2 collect (cons s1 s2)
         else collect (cons s1 first)))
 
-(defvar cycle-symbols-alist nil
+(defvar krv/cycle-chars-alist nil
   "list of characters used for symbol cycling")
 
-(defgroup cycle-symbols nil
+(defgroup krv/cycle-characters nil
   "Group for cycling symbols")
 
-(defcustom cycle-symbols-lists-default
-  (list (list ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0) (list ?+ ?-) (list ?> ?< ?=))
-  "Default lists for symbol cycling"
-  :type 'sexp
-  :set (lambda (s val)
-         (set-default s val)
-         (setq cycle-symbols-alist (mapcan #'krv/unwrap-list-to-alist val))))
+;; (defcustom krv/cycle-characters-lists-default
+;;   nil ; (lambda () "" (list '(?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0) '(?+ ?-) '(?> ?< ?=)))
+  
+;;   "Default lists for symbol cycling"
+;;   :type 'sexp
+;;   :set (lambda (s val)
+;;          (set-default s val)
+;;          (setq krv/cycle-chars-alist (mapcan #'krv/unwrap-list-to-alist val))))
 
 (defconst cyrillic-symbol-lists
   (list
@@ -104,25 +106,32 @@ Return in form of (position . character) cons nor nil"
          ?\N{CYRILLIC CAPITAL LETTER EF}
          ?\N{CYRILLIC CAPITAL LETTER FITA})))
 
-;; add cyrillic substitutions
-(custom-set-variables
- `(cycle-symbols-lists-default ,(append cycle-symbols-lists-default
-                                       cyrillic-symbol-lists)))
+;; (list ?я ?\N{CYRILLIC SMALL LETTER LITTLE YUS}
+;;               ?\N{CYRILLIC SMALL LETTER BIG YUS}
+;;               ?Я ?\N{CYRILLIC CAPITAL LETTER LITTLE YUS}
+;;               ?\N{CYRILLIC CAPITAL LETTER BIG YUS})
 
-(defun krv/cycle-symbols-command ()
+;; add cyrillic substitutions
+(setq krv/cycle-chars-alist
+      (mapcan #'krv/unwrap-list-to-alist cyrillic-symbol-lists))
+;; (custom-set-variables
+;;  `(krv/cycle-characters-lists-default ,(append krv/cycle-characters-lists-default
+;;                                        cyrillic-symbol-lists)))
+
+(defun krv/cycle-characters-command ()
   "Cycle previous non-whitespace if there is a known substitution"
   (interactive)
   (let* ((check-pair (krv/last-char-check))
          (pos (car check-pair))
          (char (cdr check-pair))
-         (rchar (assoc char cycle-symbols-alist)))
+         (rchar (assoc char krv/cycle-chars-alist)))
     (when (and check-pair rchar)
       (forward-char pos)
       (delete-backward-char 1)
       (insert-char (cdr rchar))
       (backward-char pos))))
 
-(global-set-key (kbd "C-<backspace>") 'krv/cycle-symbols-command)
+(global-set-key (kbd "C-<backspace>") 'krv/cycle-characters-command)
 (global-set-key (kbd "C-c s") 'krv/squeeze)
 
 (provide 'krv-functions)
