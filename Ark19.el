@@ -72,3 +72,27 @@
 
 
 
+;; dirty hack to access fornex server
+(require 'tramp)
+(add-to-list 'tramp-methods
+             '("fornex"
+               (tramp-login-program "plink")
+               (tramp-login-args
+                (("-l" "root")
+                 ("-P" "22")
+                 ("-i" "~/.ssh/id_rsa.ppk")
+                 ("-ssh")
+                 ("-t")
+                 ;("31.172.64.10")
+                 ("%h")
+                 ("\"")
+                 ("env 'TERM=dumb' 'PROMPT_COMMAND=' 'PS1=#$ '")
+                 ("%l")
+                 ("\"")))
+               (tramp-remote-shell "/bin/sh")
+               (tramp-remote-shell-login
+                ("-l"))
+               (tramp-remote-shell-args
+                ("-c"))))
+(setenv "fornex_builder" "/fornex:31.172.64.10|sudo:builder@31.172.64.10:")
+(setenv "fornex_root" "/fornex:31.172.64.10:")
