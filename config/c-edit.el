@@ -1,10 +1,17 @@
 ;; setup CC-mode
 (require 'cc-mode)
 (require 'ggtags)
-(require 'semantic)
+; (require 'semantic)
 (require 'company)
 
-(delete 'company-clang company-backends)
+(use-package lsp-mode :commands lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
+
+; (delete 'company-clang company-backends)
 
 (setq c-default-style
       (cons '(c-mode . "bsd") c-default-style))
@@ -24,8 +31,8 @@
           'yas/minor-mode)
 (add-hook 'c-mode-common-hook
           'hs-minor-mode)
-(add-hook 'c-mode-common-hook
-          'semantic-mode)
+;; (add-hook 'c-mode-common-hook
+;;           'semantic-mode)
 
 (add-hook 'company-mode-hook
           (lambda ()

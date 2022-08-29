@@ -28,7 +28,6 @@
 			    'helm-projectile
 			    'org-journal
 			    'cmake-mode
-			    'cmake-project
                             'ggtags
 			    )
   "Libraries that should be installed by default.")

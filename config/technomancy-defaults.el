@@ -109,7 +109,12 @@
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key python-mode-map [remap imenu]
-               'idomenu))))
+                'idomenu)))
+  (add-hook 'flymake-mode-hook
+            (lambda ()
+              (define-key flymake-mode-map (kbd "C-c C-f") 'flymake-goto-next-error)
+              (define-key flymake-mode-map (kbd "C-c C-b") 'flymake-goto-prev-error)
+              (define-key user-map-f5 (kbd "f") 'flymake-show-buffer-diagnostics))))
 
 (provide 'technomancy-defaults)
 ;;; technomancy-defaults.el ends here
