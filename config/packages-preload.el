@@ -17,7 +17,6 @@
 
 ;; enable list of recent files in the menu
 (require 'recentf)
-(recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key (kbd "C-x M-r") 'recentf-open-files)
 

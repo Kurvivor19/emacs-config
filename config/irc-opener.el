@@ -1,4 +1,4 @@
-;; functions for opening orc links
+;; functions for opening erc links
 
 (require 'erc)
 

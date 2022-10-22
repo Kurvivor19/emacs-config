@@ -43,6 +43,7 @@
 
 (server-start)
 ;; Open list of recent files as initial buffer
+(recentf-mode 1)
 (recentf-open-files)
 
 (projectile-mode)
